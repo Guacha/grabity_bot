@@ -78,6 +78,7 @@ class Espacio:
         plt.plot([-1, 1], [0, 0], color='#FFFFFF', linewidth=1)
         plt.plot([0, 0], [-1, 1], color='#FFFFFF', linewidth=1)
 
+        # Si el campo 'Estrellas' Es verdadero, se grafican las estrellas
         if estrellas:
             filename += '_Estrellas'
             x_estrellas = []
@@ -90,6 +91,7 @@ class Espacio:
 
             plt.scatter(x_estrellas, y_estrellas, s=b_estrellas, color='#BBBBBB')
 
+        # Si el campo constelaciones es verdadero, se grafican las constelaciones
         if constelaciones:
             filename += '_Constelaciones'
             conexiones = []
@@ -108,14 +110,17 @@ class Espacio:
                 for conexion in conexiones:
                     plt.plot(conexion[0], conexion[1], color='#CCFF00', linewidth=1)
 
+        # Se coloca el formato del archivo y se guarda
         filename += '.png'
         plt.savefig(filename)
         return filename
 
     def get_num_estrellas(self):
+        """Getter del número de estrellas"""
         return len(self.listaEstrellas)
 
     def get_num_constelaciones(self):
+        """Getter del número de constelaciones"""
         return len(self.listaConstelaciones)
 
 
