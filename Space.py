@@ -23,9 +23,13 @@ class Espacio:
         self.read_constelaciones()
 
     def read_estrellas(self):
+        """Método que se encarga de leer el archivo stars.txt y procesar la info de cada linea"""
         for estrella in self.starFile:
+            # Partir cada linea en una lista (vector) con máximo 6 particiones, o 7 elementos
             datos_estrella = estrella.split(' ', 6)
             datos_estrella[len(datos_estrella) - 1] = datos_estrella[len(datos_estrella) - 1].rstrip('\n')
+
+            # Solo las estrellas con nombre propio tiene  7 argumentos, luego se deben manejar de forma distinta
             if len(datos_estrella) == 7:
                 datos_estrella[6] = datos_estrella[6].split(';')
                 datos_estrella[6] = [nom.strip() for nom in datos_estrella[6]]
@@ -38,12 +42,15 @@ class Espacio:
             self.listaEstrellas.append(star)
 
     def read_constelaciones(self):
+        """Se encarga de leer cada una de los archivos en \Constelaciones y por cada uno, establecer
+         un objeto de tipo constelación"""
         for cons in os.listdir('.\\Constelaciones\\'):
             nom = cons[:-4]
             c = Constelacion(str(nom), self)
             self.listaConstelaciones.append(c)
 
     def graficar_masivo(self, estrellas, constelaciones):
+        """Método que grafica todas las constelaciones, todas las estrellas, o ambos, según se requiera"""
         filename = '.\\Figuras\\Cielo'
 
         fig, ax = plt.subplots(figsize=(8, 8))
