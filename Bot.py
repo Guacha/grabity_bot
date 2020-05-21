@@ -1,6 +1,4 @@
 from telegram.ext import *
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-import logging
 
 
 class Bot:
