@@ -65,6 +65,7 @@ def opciones(actu, contexto):
         else:
             file = c.graficar_constelacion(True)
 
+        contexto.bot.send_message(chat_id=actu.effective_chat.id, text=c.get_info_constelacion())
         contexto.bot.send_photo(chat_id=actu.effective_chat.id, photo=open(file[2:], 'rb'), caption='Aquí tienes la '
                                                                                                     'constelación '
                                                                                                     '{}'.format(

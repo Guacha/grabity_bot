@@ -234,3 +234,6 @@ class Constelacion:
         plt.savefig(filename)
 
         return filename
+
+    def get_info_constelacion(self):
+        return open('.\\Informaciones\\'+self.nom + '.txt').read()
