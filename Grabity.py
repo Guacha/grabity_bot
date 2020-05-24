@@ -79,11 +79,11 @@ def opciones(actu, contexto):
             num = espacio.get_num_constelaciones()
             contexto.bot.send_photo(
                 chat_id=actu.effective_chat.id, photo=open(file[2:], 'rb'),
-                caption='Actualmente tengo {} estrellas observables en mi base de datos!'.format(num)
+                caption='Actualmente tengo {} constelaciones observables en mi base de datos!'.format(num)
             )
 
         elif info.data[1:] == 'todas':
-            info.edit_message_text(text='Aquí tienes todas las constelaciones observables que tengo registradas:')
+            info.edit_message_text(text='Aquí tienes todas las estrellas y constelaciones observables que tengo registradas:')
             file = espacio.graficar_masivo(True, True)
             num_e = espacio.get_num_estrellas()
             num_c = espacio.get_num_constelaciones()
@@ -110,7 +110,7 @@ def opciones(actu, contexto):
             num = espacio.get_num_estrellas()
             contexto.bot.send_photo(
                 chat_id=actu.effective_chat.id, photo=open(file[2:], 'rb'),
-                caption='Actualmente tengo {} constelaciones observables en mi base de datos!'.format(num)
+                caption='Actualmente tengo {} estrellas observables en mi base de datos!'.format(num)
             )
         elif info.data == 'todo':
             teclado = [[InlineKeyboardButton('Solo Estrellas de constelación', callback_data='&solo_constelacion')],
