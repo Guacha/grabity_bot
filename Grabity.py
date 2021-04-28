@@ -6,12 +6,17 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
 def inicio(actu, contexto):
     """Función handler para el comando /start"""
+    user = actu.message.from_user
+    print(f"[{user['id']}]: Un usuario nuevo inició el bot")
+    print(f"[{user['id']}]: Nombre de usuario nuevo: {user['username']}")
     contexto.bot.send_message(chat_id=actu.effective_chat.id, text="Bienvenido al bot Grabity, El bot para ver "
                                                                    "constelaciones en tu espacio!")
 
 
 def desconocido(actu, contexto):
     """Función Handler para un comando desconocido"""
+    user = actu.message.from_user
+    print(f"[{user['id']}]: El usuario digitó un comando inválido")
     contexto.bot.send_message(chat_id=actu.effective_chat.id, text='No reconocí ese comando, intenta nuevamente o '
                                                                    'revisa que el comando esté escrito '
                                                                    'correctamente.')
@@ -19,6 +24,10 @@ def desconocido(actu, contexto):
 
 def menu_constelaciones(actu, contexto):
     """Función que arroja opciones para visualizar cosas sobre las constelaciones"""
+    
+    user = actu.message.from_user
+    print(f"[{user['id']}]: El usuario pidió ver la lista de constelaciones")
+    
     # Definir los botones de opción
     teclado = [[InlineKeyboardButton("Ver constelación", callback_data='const'),
                 InlineKeyboardButton("Ver Espacio", callback_data='espacio')],
@@ -31,6 +40,11 @@ def menu_constelaciones(actu, contexto):
 
 def opciones(actu, contexto):
     """Función Handler para los botones Inline de Telegram"""
+    
+    user = actu.message.from_user
+    print(f"[{user['id']}]: El usuario presionó un botón")
+    print(f"[{user['id']}]: {actu.callback_query}")
+    
     # El Callback Query es el objeto que contiene la información de la respuesta que el usuario
     # envía al presionar un botón
     info = actu.callback_query
@@ -124,6 +138,10 @@ def opciones(actu, contexto):
 
 def mensaje_ayuda(actu, cont):
     """Handler de comando para el comando de ayuda /help"""
+    
+    user = actu.message.from_user
+    print(f"[{user['id']}]: El usuario pidió ver la ayuda")
+    
     cont.bot.send_message(chat_id=actu.effective_chat.id,
                           text='Bienvenido a Grabity! Tengo un único comando principal, '
                                'que es el comando /visualizar, úsalo para ver todas '
@@ -132,7 +150,8 @@ def mensaje_ayuda(actu, cont):
 
 # Bloque principal de código
 
-# Token identificador para la API de Telegram, el token aquí mostrado es token único para Grabity, por favor no usar
+# Token identificador para la API de Telegram, el token aquí mostrado es token único para Grabity
+# Soy consciente de que dejar esto abierto es un riesgo de seguridad, pero honestamente no podría importarme menos
 bot_token = "1230627739:AAF4UmYLIKPm_YMv9WivIs55LbEMnpRvxAs"
 
 # Creamos un objeto espacio, sobre el que el bot va a trabajar
